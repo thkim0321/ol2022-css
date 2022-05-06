@@ -1,0 +1,635 @@
+---
+title: "R Refresher"
+#author: "Taehee Kim"
+#date: "5/13/2021"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{R Refresher}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+**Content**  
+
+  1. Obtain and install R and RStudio
+  2. Getting to know RStudio
+  3. Learning the building blocks of the R language
+
+## 1. Obtain and install R and RStudio
+##### R
+R is an open source (interpreted) programming language for statistical computing and graphics
+
+* ranks among 10 most popular languages
+* under continuous development
+* thousands of user-created packages, which allow for canned specialized techniques
+* large and active online community that has virtually every problem solved for you
+
+##### Install R
+To install R
+
+* visit https://cran.r-project.org/ in your browser
+* select the link that matches your operating system
+* follow installation instructions, go for R version 3.6.0
+
+##### RStudio
+RStudio is an open source integrated development environment (IDE) which includes
+
+* a text editor to write programs
+* a console where programs are executed
+* two multipurpose viewers showing graphs, the global environment section, etc.
+  
+##### Install RStudio
+To install RStudio
+
+* visit https://www.rstudio.com/products/rstudio/download/#download
+* under "Installers" select the link that matches your operating system
+* follow installation instructions
+
+
+## 2. Getting to know R Studio
+##### Basic setup
+Within RStudio
+
+* from the menu on top select 'Tools' > 'Global Options' 
+* on the left panel, select 'Code'
+* under 'Editing' make sure 'Ctrl+Enter executes' defaults to 'Current line'
+* under 'Saving' make sure that 'Default text encoding' shows 'UTF-8'
+* on the left panel, select 'Pane layout'
+* make sure that the top left form shows 'Source' and the top right shows 'Console'
+* you can customize the bottom left and right forms as you like, I prefer to have the 'Environment', 'History', 'Files', 'Plots', 'Packages', and 'Help' in the lower right pane and the rest, which I rarely use, in the lower left
+* click 'Apply' and then 'OK'
+* Otherwise, the defaults should be fine but you can further explore the global options to customize the 'Appearance' of RStudio, how RStudio highlights code snippets for you, autocompletes functions, and so on.
+
+##### Source
+The source pane is essentially a text editor where you document your R code
+
+* on top is a project manager, which allows you to switch between R scripts
+* `#` is used to place comments in code
+* Note that R is case sensitive
+* use CTRL+S to save your script
+* use CTRL+ENTER to execute your script
+* use CTRL+F to search and replace within your script
+* More shortcuts? Try ALT+SHIFT+K
+
+##### Console
+The console pane is where your script is executed and output is shown
+
+* R is ready when the console offers `>`
+* a red stop sign indicates that R is computing, click it to cancel execution or hit ESC
+* on top you see your current working directory, to change your working directory execute the following line of code with your directory typed inbetween quotes, note the use of forward slashes
+```{r eval=FALSE}
+setwd("FILE/PATH/TO/YOUR/DIRECTORY")
+```
+* input is incomplete if R answers with `+` (likely forgotten a ')' or ']')
+* recycle previous commands by using the arrow keys
+* use CTRL+1 to switch to 'Source' and CTRL+2 to switch back to 'Console'
+
+##### The multipurpose panels
+The multipurpose panels offer different functionalities depending on how you customized them
+
+* the 'Environment' is a workspace viewer that lists objects (data, values, functions) you created and provides detailed information, it also allows to manually import data or a previously saved workspace
+* the 'History' lists every single command executed in the current session
+* 'Plots' displays graphs you generated
+* 'Packages' shows installed packages with a brief description and allows you to manually load, detach, and install additional packages
+* 'Help' provides detailed documentation of functions
+
+## 3. Learning the building blocks of the R language
+### Control abstraction, i.e., how to tell R what to do 
+##### Arithmetic operations
+
+```{r}
+5 + 3 # addition
+5 - 3 # subtraction
+5 ^ 3 # exponentiation
+5 ** 3 # exponentiation
+5 * 3 # multiplication
+5 / 3 # division
+5 * (10 - 3) # use of brackets
+10 %% 3 # modulo, remainder of division
+10 %/% 3 # integer divide
+```
+
+##### Relational operations
+```{r}
+5 > 3 # greater than
+5 < 3 # less than
+5 <= 3 # weakly less than
+5 >= 3 # weakly greater than
+5 == 3 # equals
+5 != 3 # unequal
+```
+
+##### Assignment
+R stores information as an object (in the environment) with a name of your choice. An object name cannot begin with a number, spaces, or special characters that have special meaning in R. Avoid function names. `<-` is the assignment operator, `=` works, too, but is considered bad practice.
+```{r}
+result <- 5 + 3 # assign
+result # call object, note that calling 'Result' will throw an error as R is case sensitive
+result <- 5 ^ 3 # overwrite object
+result
+results <- c(5 + 3, 5 - 3, result) # assigning multiple values using 'c()' - concatenate
+results
+```
+
+##### Logical operations
+```{r}
+5 %in% results & 3 %in% results # logical conjuction (and)
+5 == 2 | 3 == 2 # logical disjunction (or)
+!3 %in% results # logical negation
+```
+
+##### Function calls
+A function takes one or multiple inputs (called 'arguments') within brackets and produces an output. To learn about a function and its arguments type `?` in front of it and check the respective multipurpose panel for the function documentation.
+```{r}
+mean(x = results) # arithmetic mean
+base::mean(x = results) # to avoid conflict with other packages, specify the function source, i.e., the package, as 'source::', usually not necessary
+sqrt(x = result) # square root
+sum(x = results) # sum of elements
+seq(from = 1, to = 10) # sequence
+values <- seq(from = 1, to = 10, by = 2)
+rep(x = result, times = 3) # replication of elements
+rep(x = results, each = 3)
+print(values) # print values
+print(c(values, result))
+print(mean(results)) # nested function calls
+```
+
+##### Subsetting operations
+R provides three subsetting operators, `[`, `[[`, and `$` to extract or replace parts of an object. You will learn about these in detail below together with how to access different data structures. For now, just consider the `[` operator. Use `[]` to access, i.e., index, elements by position from the objects created thus far.
+```{r}
+results[3] # access the third element in results
+results # 125 is the third element in results
+```
+
+##### Control structures
+Control structures allow you to control the flow of execution in a script, we distinguish conditional execution, loops, and conditional jumps. You can use all these structures to build your own functions, too (not covered here).
+
+Conditional execution with `if` - `if (condition) {do}`
+```{r}
+if ( 3 %in% c(1,2,3)) {
+  print("There is 3")
+} 
+
+print(result)
+print(results)
+
+```
+Conditional execution with `if` and `else` - `if (condition) {do} else {do}`
+```{r}
+some_number <- sample(x = 1:20, size = 1)
+print(some_number)
+
+if (some_number <= 10) {
+  print("It is less than 10")
+} else {
+  print("It is greater than 10")
+}
+```
+Conditional execution with vectorized `ifelse` - `ifelse(condition, if met do, else do)`
+```{r}
+values <- sample(x = 1:20)
+ifelse(values >= 10, TRUE, FALSE)
+```
+`for` loop for iterative tasks - `for (element in sequence of elements) {do}`
+```{r}
+for (i in 1:length(values)) {
+  print(values[i])
+}
+```
+Note how 'i' appears in the global environment, this is a side effect of using control structures outside of functions - the state of the program is changed, i.e., the global environment is affected. Mind that this can have unanticipated consequences.
+`for` loop with conditional execution
+```{r}
+for (i in 1:length(values)) {
+  if (values[i] >= 10) {
+    print(TRUE)
+  } else {
+    print(FALSE)
+  }
+}
+```
+`while` loop - `while (condition is met) {do}`
+```{r}
+while (result < 200) {
+  print(result)
+  result <- result + 5
+}
+```
+Again, note how the object "result" is altered in the global environment.
+
+
+### Data types
+To make the best of the R language, you’ll need a strong understanding of the basic data types and data structures and how to operate on them. Everything in R is an object.
+
+R has 6 basic data types:
+
+ * character
+ * numeric (real or decimal)
+ * integer
+ * boolean
+ * complex
+
+Elements of these data types may be combined to form data structures, such as atomic vectors. When we call a vector atomic, we mean that the vector only holds data of a single data type. Below are examples of atomic character vectors, numeric vectors, integer vectors, etc.
+
+* character: "a", "swc"
+* numeric: 2, 15.5
+* integer: 2L (the L tells R to store this as an integer)
+* boolean: TRUE, FALSE
+* complex: 1+4i (complex numbers with real and imaginary parts)
+
+R provides many functions to examine features of vectors and other objects, for example
+
+* class() - what kind of object is it (high-level)?
+* typeof() - what is the object’s data type (low-level)?
+* length() - how long is it? What about two dimensional objects?
+* attributes() - does it have any metadata?
+ 
+
+##### Boolean
+The boolean data type represents logical values, in R `TRUE` or `FALSE`, alternatively `T` or `F`. Matching, comparison, and set operations often evaluate to logical values.
+```{r}
+boolean <- TRUE
+boolean
+typeof(boolean)
+boolean <- F
+boolean
+typeof(boolean)
+typeof(1 == 2) # comparison operation
+results %in% values # matching operation
+```
+
+##### Integer
+The integer data type represents whole numbers. This requires less storage capacity. If not made explicit by appending 'L' to a number, the number is autocoerced to type 'numeric' in R.
+```{r}
+whole <- c(2L, 14L, 36L)
+whole
+typeof(whole)
+```
+
+##### Numeric
+The numeric data type represents real and decimal numbers which require more storage capacity as they are stored as double precision floating point numbers (consists of sign, exponent, and mantisse).
+```{r}
+decimal <- c(2.14, 3, 1836.819120)
+decimal
+typeof(decimal)
+class(decimal)
+```
+
+##### Character
+The character data type represents strings consisting of no, one, or more numbers or characters set between double quotes. Use single quotes within strings, encoding matters here, western standard is UTF-8.
+```{r}
+string <- ("multilevel")
+typeof(string)
+```
+
+
+
+##### Type transformation
+R supports strong typing, i.e., it imposes strict restrictions on valid operations `result + "5"` throws an error. To transform data types, use `as.logical()`, `as.integer()`, `as.numeric()`, and `as.character()`.
+```{r}
+typeof(as.numeric("5"))
+result + as.numeric("5")
+as.character(result)
+typeof(as.integer("2"))
+```
+
+### Data structures
+
+R has many data structures. Here I introduce four major data structures:
+
+* vector
+* matrix
+* data frame
+* list
+
+
+##### Vectors
+Vectors are homogenous, one dimensional arrays which represent a collection of information stored in a specific order. Vectors are accessed with the `[` operator.
+```{r}
+result # a scalar, or a vector of length 1
+values # a vector, a collection of elements
+log_vect <- c(TRUE, FALSE, T, F) # a logical vector
+length(log_vect) # length of vector
+str(log_vect) # structure of vector
+cha_vect <- c("a", "b", "c") # a character vector
+str(cha_vect) 
+c(1, 2, "3", TRUE, 5) # coercion to most flexible type - character
+c(1, 2, FALSE, 5) # coercion to most flexible type - numeric
+c(1, 2, NA, 3) # special values in a vector, NA - missing data
+results[3] # access third element
+results[c(2,3)] # access second and third element
+results[c(FALSE, TRUE, TRUE)] # same
+results[3] <- 4 # replace
+results[3] # now the third element is 4
+results <- results[-3] # remove
+results # now there is no third element anymore
+results[results > 3] # access by using conditions
+```
+
+##### Matrices
+Matrices are homogenous, two dimensional arrays implemented as vectors. Matrices are accessed with the `[` operator.
+```{r}
+matrix_1 <- matrix(data = 1:6, nrow = 2, ncol = 3) # create a matrix with 'matrix()'
+matrix_1
+matrix_2 <- array(data = 1:6, dim = c(2, 3)) # or use 'array()' which is also used to construct multidimensional arrays (not covered here)
+matrix_2
+dim(matrix_1) # dimensions of a matrix, two rows, three columns
+str(matrix_1) # structure of a matrix
+nrow(matrix_1) # number of rows, same as dim(matrix_1)[1]
+ncol(matrix_1) # number of columns, same as dim(matrix_1)[2]
+length(matrix_1) # number of rows times number of columns
+# to combine matrices, use 'cbind()' and 'rbind()'
+cbind(matrix_1, matrix_2) # add columns to a matrix
+rbind(matrix_1, matrix_2) # add rows to a matrix
+matrix_2[2, 3] # access using index with two positions [rows, columns], otherwise works same as for vectors
+matrix_2[c(1, 2), 3] # full third column
+matrix_2[, 3] # same
+matrix_2[,-3] # remove third column
+matrix_2[2, 3] <- NA # replace value with missing
+matrix_2
+rownames(matrix_1) <- c("a", "b") # modify row names
+matrix_1
+colnames(matrix_1) <- c("A", "B", "C") # modify column names
+matrix_1
+matrix_1["a","C"] # access by row and column names
+```
+
+
+##### Data frames
+Data frames are heterogeneous collctions of equal-length vectors. They are two dimensional. Use `[` or `$` to access data frames.
+```{r, eval=TRUE}
+data_1 <- data.frame("A" = c(1:6), 
+                     "B" = rep("a", times = 6), 
+                     "C" = c(seq(from = 0, to = 1, by = 0.2))) # create data frame
+
+print(data_1) # You can also use View(data_1)
+
+str(data_1)
+
+data_2 <- data.frame("D" = c(7:12), 
+                     "E" = rep("b", times = 6), 
+                     "F" = c(seq(from = 1, to = 2, by = 0.2)))
+
+print(data_2)
+
+# to combine data frames use cbind() and rbind()
+cbind(data_1, data_2) # combine column-wise, number of rows must match
+
+rbind(data_1, data_1) # combine row_wise, column names and number of columns must match
+
+# access via `[`
+data_1[,"B"] # access column B
+data_1[2,3] # access second row third column
+# access via `$`
+data_1$B # access column B
+data_1$C[3] # access third value of column C
+data_1[data_1$C < 0.5,] # all rows for which the values in column C are below 0.5
+```
+
+
+##### Lists
+Lists are heterogeneous collections of data structures. Lists are accessed with the `[` and `[[` operators.
+```{r}
+list_1 <- list(1:5, c("this", "is", "the second", "vector"), matrix_1)
+list_1
+str(list_1) # structure of a list
+length(list_1) # number of list elements
+# to combine lists use c()
+list_2 <- list(6:10, rep("a", times = 5))
+list_3 <- c(list_2, list_1) # combine lists in order
+list_3
+
+# you can provide names to list elements as to vector elements
+list_1 <- setNames(object = list_1, nm = c("a", "b", "c"))
+list_1
+# access works same as described above and below but use `[[` to select list elements
+list_3[[3]] # third element in list
+list_3[[5]][,"B"] # fifth element in list (a matrix) and column "B" from the matrix
+list_3[1:3] # first three list elements
+```
+
+
+##### Attributes
+Attributes store metadata about an object.
+```{r}
+attributes(results) # a named vector
+attributes(matrix_1) # a matrix
+attributes(list_1) # a named list
+attributes(data_1) # data frame
+# or use dim(), names(), class()
+```   
+
+
+## 4. R Packages
+##### Package
+Packages are similar to libraries in other programming languages. While base R is powerful, it has limited functionality and some tasks that are in principle solvable with base R can be coded more easily with specialized packages. R packages are primarily distributed via the CRAN package repository, which currently hosts more than 14,000 packages. 
+
+##### Install a package
+To install a package from CRAN use `install.packages()` and provide a package name or a vector of package names. You need to do this only once. For instance, for the 'dplyr' package type `install.packages("dplyr")`, then type `library(dplyr)` to attach the dplyr package and make it available in your current R session. Using `?` to learn about a package, e.g., ?dplyr, works only if the package authors have built this feature into their package. In each session you have to load/attach the packages you want to use. It is good practice to source packages from a packages script on start up (not covered here). To check which packages are currently attached use `(.packages())`. To detach a package use `detach("package name", unload=TRUE)`. 
+
+
+
+
+## 5. Working with data
+##### Import data sets
+How you import data into R depends on the data format you are confronted with. In the following, you will deal with a .csv (comma separated values) file, which is quite common.
+Note that all string variables are automatically transformed to factor variables (i.e., categorical variables). This is a nuisance in R and often makes no sense. To avoid this, use the `stringsAsFactors = FALSE` argument. Following file is separated by `;` not comma, so `sep` argument is used.
+
+```{r}
+keyword.counts <- read.csv("keyword_counts.csv",header = TRUE, sep = ";", stringsAsFactors = FALSE)
+
+str(keyword.counts)
+head(keyword.counts)
+tail(keyword.counts)
+dim(keyword.counts)
+```
+
+
+Note that `read.csv` can be very slow for huge dataset. In such cases I recommend `fread()` from the 'data.table' package or even way faster `vroom` from the 'vroom' package. For .txt files that store text, use base R's readLines(), functions from the 'readtext' package, etc., really depends on where you want to go. For SPSS or STATA files try the 'haven' package.
+
+##### Apply family of functions
+
+The `apply()` family pertains to the R base package and is populated with functions to manipulate slices of data from matrices, arrays, lists and dataframes in a repetitive way. These functions allow crossing the data in a number of ways and avoid explicit use of loop constructs. They act on an input list, matrix or array and apply a named function with one or several optional arguments.
+
+To apply functions on matrices and arrays, the structure of the function call is `apply(data, rows or columns (margin), function to apply)`.
+```{r}
+# Create a new object storing sum of three variables
+umvolkung_sum <- apply(keyword.counts[c(2,3,4)], 1, sum) #when MARGIN=1, it applies over rows, whereas with MARGIN=2, it works over columns.
+umvolkung_sum
+
+```
+
+For more about `apply()` family, check `lapply()`, `sapply()`, `tapply()`.
+
+
+##### Data management
+For data management purposes, the 'dplyr' package provides a handy grammar for data manipulation. You can do almost all of this with base R, dplyr is just much more convenient, especially when combined with the pipe (not covered here). 
+
+dplyr is a grammar of data manipulation, providing a consistent set of verbs that help you solve the most common data manipulation challenges:
+
+* mutate() adds new variables that are functions of existing variables
+* select() picks variables based on their names.
+* filter() picks cases based on their values.
+* summarise() reduces multiple values down to a single summary.
+* arrange() changes the ordering of the rows.
+These all combine naturally with group_by() which allows you to perform any operation “by group”.
+
+```{r}
+library(dplyr)
+```
+To change variable names, use `rename()`.
+
+```{r}
+# To change name A to B, write B = A.
+keyword.counts <- rename(keyword.counts, 
+                         A = Umvolkung,
+                         B = Großer.Austausch,
+                         C = Bevölkerungsaustausch)
+keyword.counts
+```
+
+
+To select or reorder columns conditional on specific criteria, use `select()`.
+```{r}
+names(keyword.counts) # show column names
+
+three_keywords <- select(keyword.counts, A, B, C) # select variables and reorder by name
+
+three_keywords2 <- select(keyword.counts, c(2:4)) # select variables and reorder by position
+
+head(three_keywords)
+head(three_keywords2)
+
+```
+
+To add new or alter existing variables, use `mutate()`. This example is also using pipes, `%>%`. Pipes take the output from one function and feed it to the first argument of the next function. 
+```{r}
+keyword.counts <- keyword.counts %>% # This is a pipe!
+  mutate(
+    Total = A + B + C
+    )
+
+# Above code is the same as below:
+keyword.counts <- mutate(keyword.counts,
+                         Total = A + B + C)
+
+# 1. Change day variable from string to "Date" class object and 2. create "months" variable
+keyword.counts <- keyword.counts %>%
+  mutate(
+    day = as.Date(day),
+    month = months(day)
+  )
+
+head(keyword.counts)
+```
+
+For detail of `as.Date` function, see [here](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/as.Date).
+
+To select rows conditional on specific criteria, use `filter()`. 
+```{r}
+# Get rows whose Total number exceeds 150.
+keyword.counts %>%
+  filter(Total > 150)
+
+head(keyword.counts)
+```
+
+
+To order rows by variables, use `arrange()`.
+```{r}
+keyword.counts %>%
+  filter(Total > 150) %>%
+  arrange(desc(Total)) # sort a variable in descending order.
+```
+
+`summarise()` creates a new data frame. It will have one (or more) rows for each combination of grouping variables; if there are no grouping variables, the output will have a single row summarising all observations in the input. 
+To group data by one or more variables in order to perform group-specific operations, use groub_by.
+```{r}
+keyword.counts %>%
+  summarise(
+    n = n(),
+    A_sum = sum(A),
+    A_mean = mean(A))
+
+# Using group_by
+keyword.counts %>%
+  group_by(month) %>%
+  summarise(
+    n = n(),
+    Total_sum = sum(Total)
+  )
+
+```
+
+
+
+
+## 6. Further topics and ressources
+
+##### How to write a good code
+* use Comments otherwise you forget.
+* use '#' sign to indicate comments. R ignore the line start with the sign.
+* write code with a consistent style. 
+* For example: [Google's style guide](https://google.github.io/styleguide/Rguide.xml#semicolons)
+
+
+##### Where to go next
+* improving code readability with the pipe operator ('magrittr' package)
+* improving coding and documentation practice with R Markdown
+* managing your file system
+* working with relational data and databases
+* working with strings and dates
+* building functions
+* mastering graphics
+* discovering textual, spatial, and network data
+* discovering distributions and statistical models
+* automating Web data extraction
+* optimizing your code via vectorization and data.table
+* learning about packages that make it easier to work with R
+
+##### Where to look
+Books
+
+* Imai, Kosuke. 2017. Quantitative social science. An introduction. Princeton, NJ: Princeton University Press.
+* Munzert, Simon, Christian Rubba, Peter Meißner, Dominic Nyhuis. 2015. Automated data collection with R. A practical guide to Web scraping and text mining. Chichester: Wiley.
+* Wickham, Hadley. 2014. Advanced R. Boca Raton: CRC Press.
+* Wickham, Hadley. 2009. Ggplot2. Elegant graphics for data analysis. New York: Springer
+* Wickham, Hadley and Garrett Grolemund. R for data science. Sebastopol, CA: O'Reilly.
+
+Online ressources
+
+* https://stackoverflow.com/
+* https://www.r-bloggers.com/
+* https://cran.r-project.org/web/views/
+* https://journal.r-project.org/
+* https://www.rstudio.com/resources/cheatsheets/
+* http://style.tidyverse.org/ 
+* http://www.noamross.net/blog/2014/4/16/vectorization-in-r--why.html
+* http://www.burns-stat.com/pages/Tutor/R_inferno.pdf
+
+Recommended packages
+
+* stringr - provides common string operations
+* pacman - manage package installation and sourcing
+* plyr - split-apply-combine paradigm
+* dplyr - successor of plyr, tailored for data frames
+* data.table - enhanced (fast and memory efficient) data.frame
+* haven - import and export 'SPSS', 'Stata' and 'SAS' Files
+* magrittr - provides the pipe operator
+* ggplot2 - data visualization using the grammar of graphics, base R graphics can do just fine, though
+* survey - analysis of complex survey samples
+* writexl - read, write, and edit XLSX Files
+* lubridate - dealing with dates
+* zoo - dealing with time series
+* eeptools - misc convenience functions
+* httr - tools for working with URLs and HTTP
+* rvest - tools for Web scraping
+* XML - tools for parsing and generating XML
+* crayon - colored terminal output
+
