@@ -7,6 +7,18 @@ Welcome to the seminar! You can find all seminal materials here.
 
 ---
 
+# Course log
+
+## First block (May 6 and May 7)
+### May 6 (Fri)
+* General introduction: [ol2022css-intro.pdf](Slides/ol2022css1-intro.pdf)
+* Machine learning introduction: [ol2022css2-ml.pdf](Slides/ol2022css2-ml.pdf)
+
+### May 7 (Sat)
+* R refresher, section 1 (Obtain and install R and RStudio) to 4 (R Packages): [r_refresher_short.pdf](R_refresher/r_refresher_short.pdf)
+* Python introduction: [ol2022-css-python-intro.pdf](Slides/ol2022-css-python-intro.pdf)
+  * Reference: Lubanovic, Bill. (2014) Introducing Python: Modern Computing in Simple Packages. O’Reilly Media.
+
 
 
 ---
