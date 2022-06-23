@@ -8,8 +8,8 @@ Welcome to the seminar! You can find all seminal materials here.
 ---
 
 # What's new
-:star: Course log for second block is available.
-:star: Exercise 2 is uploaded: [exercise2-list-function.ipynb](ml-text-classification/exercise2-list-function.ipynb). Please submit the exercise 2 by *7th July, 23:59*.
+- :star: Course log for second block is available.
+- :star: Exercise 2 is uploaded: [exercise2-list-function.ipynb](ml-text-classification/exercise2-list-function.ipynb). Please submit the exercise 2 by **7th July, 23:59**.
 
 ---
 
