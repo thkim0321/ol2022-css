@@ -7,6 +7,12 @@ Welcome to the seminar! You can find all seminal materials here.
 
 ---
 
+# What's new
+:star: Course log for second block is available.
+:star: Exercise 2 is uploaded: [exercise2-list-function.ipynb](ml-text-classification/exercise2-list-function.ipynb). Please submit the exercise 2 by *7th July, 23:59*.
+
+---
+
 # Course log
 
 ## First block (May 6 and May 7)
@@ -19,22 +25,21 @@ Welcome to the seminar! You can find all seminal materials here.
 * Python introduction: [ol2022-css-python-intro.pdf](Slides/ol2022-css-python-intro.pdf)
   * Reference: Lubanovic, Bill. (2014) Introducing Python: Modern Computing in Simple Packages. O’Reilly Media.
 
----
 
 ## Second block
 
 ### First Day (June 10)
 - Introduction to machine learning : [ol2022css3-ml2.pdf](Slides/ol2022css3-ml2.pdf)
-- Python basics : [python_data_type.ipynb](Python_basics_jupyter/python_data_type.ipynb)`
+- Python basics : [python_data_type.ipynb](Python_basics_jupyter/python_data_type.ipynb)
 
 ### Second Day (June 11)
 - Exercise 1: [exercise1-read-pickle-create-variables.ipynb](ml-text-classification/exercise1-read-pickle-create-variables.ipynb)
 - Introduction to text classification : [ol2022css4-text-classification.pdf](Slides/ol2022css4-text-classification.pdf)
-- Classifying tweets using Support Vector Machine (SVM) : [svm-detecting-author-twitter.ipynb](ml-text-classification/svm-detecting-author-twitter.ipynb)
-  
-**Prerequisite**: `NLTK`, `scikit-learn` packages + two NLTK bundles. The section below explains how to install them. Also you need to have data files (`pkl` files) in the working directory. 
-
+- Classifying tweets using Support Vector Machine (SVM) : [svm-detecting-author-twitter.ipynb](ml-text-classification/svm-detecting-author-twitter.ipynb
+  - **Prerequisite**: `NLTK`, `scikit-learn` packages + two NLTK bundles. The section below explains how to install them. Also you need to have data files (`pkl` files) in the working directory. 
     
+- Function in Python: [python_method.ipynb](Python_basics_jupyter/python_method.ipynb)
+
 
 ### How to install packages using conda
 1. Open *Anaconda Prompt* (windows) or *Terminal* (mac)
