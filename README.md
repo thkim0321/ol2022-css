@@ -32,11 +32,9 @@ Welcome to the seminar! You can find all seminal materials here.
 - Introduction to text classification : [ol2022css4-text-classification.pdf](Slides/ol2022css4-text-classification.pdf)
 - Classifying tweets using Support Vector Machine (SVM) : [svm-detecting-author-twitter.ipynb](ml-text-classification/svm-detecting-author-twitter.ipynb)
   
-{% note %}
 **Prerequisite**: `NLTK`, `scikit-learn` packages + two NLTK bundles. The section below explains how to install them. Also you need to have data files (`pkl` files) in the working directory. 
-{% endnote %}
-  
-  
+
+    
 
 ### How to install packages using conda
 1. Open *Anaconda Prompt* (windows) or *Terminal* (mac)
