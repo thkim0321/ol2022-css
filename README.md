@@ -19,6 +19,51 @@ Welcome to the seminar! You can find all seminal materials here.
 * Python introduction: [ol2022-css-python-intro.pdf](Slides/ol2022-css-python-intro.pdf)
   * Reference: Lubanovic, Bill. (2014) Introducing Python: Modern Computing in Simple Packages. O’Reilly Media.
 
+---
+
+## Second block
+
+### First Day (June 10)
+- Introduction to machine learning : [ol2022css3-ml2.pdf](Slides/ol2022css3-ml2.pdf)
+- Python basics : [python_data_type.ipynb](Python_basics_jupyter/python_data_type.ipynb)`
+
+### Second Day (June 11)
+- Exercise 1: [exercise1-read-pickle-create-variables.ipynb](ml-text-classification/exercise1-read-pickle-create-variables.ipynb)
+- Introduction to text classification : [ol2022css4-text-classification.pdf](Slides/ol2022css4-text-classification.pdf)
+- Classifying tweets using Support Vector Machine (SVM) : [svm-detecting-author-twitter.ipynb](ml-text-classification/svm-detecting-author-twitter.ipynb)
+  
+{% note %}
+**Prerequisite**: `NLTK`, `scikit-learn` packages + two NLTK bundles. The section below explains how to install them. Also you need to have data files (`pkl` files) in the working directory. 
+{% endnote %}
+  
+  
+
+### How to install packages using conda
+1. Open *Anaconda Prompt* (windows) or *Terminal* (mac)
+2. Check if you already have the package or not. For this session, we need following two packages: `nltk` and `scikit-learn`. 
+   ```
+   conda list <package-name>
+	```
+3. In case you don't have the package,  install them.
+   ```
+   conda install nltk
+   conda install scikit-learn
+	```
+
+#### NLTK download
+To run the SVM code, you need to download NLTK bundles after you intalled the nltk package. 
+
+```
+import nltk
+nltk.download()
+```
+When you execute the code above, there will be a small window allowing you to download NLTK bundles. Among them, download `punkt`, `stopwords`. 
+
+
+
+
+  
+
 
 
 ---
