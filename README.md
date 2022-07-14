@@ -9,8 +9,39 @@ Welcome to the seminar! You can find all seminal materials here.
 # What's new
 - :star: Course log for second block is available.
 - :star: Exercise 2 is uploaded: [exercise2-list-function.ipynb](ml-text-classification/exercise2-list-function.ipynb). Please submit the exercise 2 by **7th July, 23:59**.
+- :star: Information for the exam is now available.
 
 ---
+
+## Exam
+The exam consisted of one base task and five additional tasks. Completing a base task guarantees you 2.0 at maximum. You can obtain a higher grade by completing one or more additional tasks. 
+
+### Base task
+The base task is to conduct the text classification using SVM code. You can find the dataset for the task in the [Exam](Exam) folder. You can read the csv dataset file into Python using `read-dataset.ipynb` file.
+
+- Explaining SVM 
+- Explaining other techniques producing better performance in machine learning
+	- i.e., tokenization, stemming, tfidf, grid search
+- Evaluating the classification results
+
+### Additional tasks
+1. Use more/different techniques for the text cleaning before running the machine learning. e.g., remove stopwords and/or use a different stemmer.
+2. Try machine learning algorithms with the same data and compare the results.
+3. Provide ideas on how to improve the machine learning performance. For example, NLP techniques which were not introduced in the course.
+4. Introduce other machine learning algorithms which possibly perform better than SVM. For example, LightGBM.
+5. Introduce your research plan using the machine learning algorithm. It does not have to be a classification task. Please briefly explain your research design. i.e., research question, hypothesis, data, type of machine learning algorithm, etc.
+6. Conduct machine learning using your own dataset. 
+
+### Pages
+Minimum three pages, English or German.
+
+### Deadline
+September 15th. 
+
+
+---
+
+
 
 # Course log
 
@@ -62,7 +93,21 @@ nltk.download()
 When you execute the code above, there will be a small window allowing you to download NLTK bundles. Among them, download `punkt`, `stopwords`. 
 
 
+## Third block
 
+## First Day (July 8)
+- Exercise 2 solve together.
+	- function: python_method.ipynb
+- Exercise 3: exercise3-for-loop.ipynb
+	- for loop: python_loop_condition.ipynb
+
+## Second Day (July 9)
+- Walk through SVM code file (svm-detecting-author-twitter.ipynb).
+	- Understand four functions in the code.
+	- Documentation of Scikit-learn package.
+		- [SVM](https://scikit-learn.org/stable/modules/svm.html#classification)
+		- [Grid search](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html#sklearn.model_selection.GridSearchCV)
+		  
 
   
 
