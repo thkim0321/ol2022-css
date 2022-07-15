@@ -17,7 +17,8 @@ Welcome to the seminar! You can find all seminal materials here.
 The exam consisted of one base task and five additional tasks. Completing a base task guarantees you 2.0 at maximum. You can obtain a higher grade by completing one or more additional tasks. 
 
 ### Base task
-The base task is to conduct the text classification using SVM code. You can find the dataset for the task in the [Exam](Exam) folder. You can read the csv dataset file into Python using `read-dataset.ipynb` file.
+The base task is to conduct the text classification using SVM code. You can find the dataset for the task in the [Exam](Exam) folder. You can read the csv dataset file into Python using `read-dataset.ipynb` file. 
+The resport should include following points:
 
 - Explaining SVM 
 - Explaining other techniques producing better performance in machine learning
@@ -107,11 +108,7 @@ When you execute the code above, there will be a small window allowing you to do
 	- Documentation of Scikit-learn package.
 		- [SVM](https://scikit-learn.org/stable/modules/svm.html#classification)
 		- [Grid search](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html#sklearn.model_selection.GridSearchCV)
-		  
-
-  
-
-
+- Stopwords: `nltk-stopwords.ipynb`;`nltk-introduction.ipynb`  
 
 ---
 ## Preparation
